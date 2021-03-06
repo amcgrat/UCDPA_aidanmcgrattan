@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UCD_PROJECT.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="154">
+              <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -46,9 +46,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="22" />
-    <option name="y" value="15" />
-    <option name="width" value="1919" />
+    <option name="x" value="11" />
+    <option name="y" value="7" />
+    <option name="width" value="1937" />
     <option name="height" value="1094" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -182,19 +182,33 @@
       <option name="project" value="LOCAL" />
       <updated>1615044821814</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Connection and filtering project.">
+      <created>1615050240561</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1615050240561</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Connection and filtering for project 3/6/21.">
+      <created>1615051054859</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615051054859</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="22" y="15" width="1919" height="1094" extended-state="0" />
+    <frame x="11" y="7" width="1937" height="1094" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15629984" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15481833" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5546306" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5775234" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30267754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -213,7 +227,9 @@
     <MESSAGE value="Test for Github 2" />
     <MESSAGE value="Test for Github Project file 1" />
     <MESSAGE value="Test for Github Project file 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test for Github Project file 2" />
+    <MESSAGE value="Connection and filtering project." />
+    <MESSAGE value="Connection and filtering for project 3/6/21." />
+    <option name="LAST_COMMIT_MESSAGE" value="Connection and filtering for project 3/6/21." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/UCD_FILE.py">
@@ -225,8 +241,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/UCD_PROJECT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="154">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
