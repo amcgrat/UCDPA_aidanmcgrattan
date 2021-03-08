@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="33c8f514-6dcc-4047-85f1-3332aaec4cbe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UCD_FILE.py" beforeDir="false" afterPath="$PROJECT_DIR$/UCD_FILE.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UCD_PROJECT.py" beforeDir="false" afterPath="$PROJECT_DIR$/UCD_PROJECT.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,13 +14,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UCD_PROJECT.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+            <state relative-caret-position="286">
+              <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/UCD_FILE.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -40,16 +53,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/UCD_FILE.py" />
         <option value="$PROJECT_DIR$/UCD_PROJECT.py" />
+        <option value="$PROJECT_DIR$/UCD_FILE.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="11" />
-    <option name="y" value="7" />
-    <option name="width" value="1937" />
-    <option name="height" value="1094" />
+    <option name="x" value="22" />
+    <option name="width" value="1770" />
+    <option name="height" value="969" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -73,7 +85,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -87,7 +99,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.UCD_PROJECT">
+  <component name="RunManager" selected="Python.UCD_FILE">
     <configuration name="UCD_FILE" type="PythonConfigurationType" factoryName="Python">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,19 +208,40 @@
       <option name="project" value="LOCAL" />
       <updated>1615051054859</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Connection and filtering for project 3/6/21.">
+      <created>1615051372087</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1615051372087</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Soda filtering for project 3/6/21.">
+      <created>1615051459157</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1615051459157</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Soda filtering for project 3/6/21.">
+      <created>1615051668221</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1615051668221</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="11" y="7" width="1937" height="1094" extended-state="0" />
+    <frame x="-16" y="68" width="1770" height="969" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15481833" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16974595" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5775234" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5550239" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30267754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -229,22 +262,26 @@
     <MESSAGE value="Test for Github Project file 2" />
     <MESSAGE value="Connection and filtering project." />
     <MESSAGE value="Connection and filtering for project 3/6/21." />
-    <option name="LAST_COMMIT_MESSAGE" value="Connection and filtering for project 3/6/21." />
+    <MESSAGE value="Soda filtering for project 3/6/21." />
+    <option name="LAST_COMMIT_MESSAGE" value="Soda filtering for project 3/6/21." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/UCD_FILE.py">
+    <entry file="file://$PROJECT_DIR$/UCD_PROJECT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="286">
+          <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UCD_PROJECT.py">
+    <entry file="file://$PROJECT_DIR$/UCD_FILE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+        <state relative-caret-position="189">
+          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
