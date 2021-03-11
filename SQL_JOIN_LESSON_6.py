@@ -10,11 +10,10 @@ ACC_DEN = pd.concat([DME_ACCEPTED, DME_DENIED])
 
 ACC_DEN_JOIN = DME_ACCEPTED.join(DME_DENIED, lsuffix='HCPCS_CD', rsuffix='HCPCS_CD')
 
-print(LOC_CODE.info())
-print(DME_1.info())
-
 DME_LOC_JOIN = DME_1.join(LOC_CODE, lsuffix='HPRICING_LOCALITY_CD', rsuffix='Social_Security_State_county_code')
 
 print(DME_LOC_JOIN.info())
 
+ACC_DEN_MERGE = pd.merge(DME_ACCEPTED, DME_DENIED [['HCPCS_CD','TYPE_OF_SERVICE_CD','PLACE_OF_SERVICE_CD','PSPS_NCH_PAYMENT_AMT']],on = "HCPCS_CD",how = "right")
 
+print(ACC_DEN_MERGE.info())
