@@ -73,3 +73,4 @@ plt.legend(["Denied", "Accepted",'All'])
 plt.show()
 
 
+

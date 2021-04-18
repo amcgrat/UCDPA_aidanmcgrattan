@@ -43,12 +43,12 @@ def ecdf(data):
 
 
 #sns.distplot(DME_1['PSPS_SUBMITTED_CHARGE_AMT'],bins = 40,norm_hist=True)
-#sns.distplot(DME_DENIED_ASC['PSPS_SUBMITTED_CHARGE_AMT'],bins = 40,norm_hist=True)
-#sns.distplot(DME_ACCEPTED_ASC['PSPS_SUBMITTED_CHARGE_AMT'],bins = 40,norm_hist=True)
+sns.distplot(DME_DENIED_ASC['PSPS_SUBMITTED_CHARGE_AMT'],bins = 40,norm_hist=True)
+sns.distplot(DME_ACCEPTED_ASC['PSPS_SUBMITTED_CHARGE_AMT'],bins = 40,norm_hist=True)
 #sns.distplot(SAMPLE_EXP,bins = 40,norm_hist=True)
-#plt.legend(['DENIED','THEORETICAL'])
-#plt.grid(True)
-#plt.show()
+plt.legend(['DENIED','ACCEPTED'])
+plt.grid(True)
+plt.show()
 
 def _check_normality(dist):
     '''

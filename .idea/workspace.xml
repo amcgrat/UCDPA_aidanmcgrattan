@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/ML_FILE_UCD.py" line="12" mnemonic="9" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="33c8f514-6dcc-4047-85f1-3332aaec4cbe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DATA_CAMP_ECDF.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_SUB_CHG_FILE.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BINNING_TESTS.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ENCODING_TESTS.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ML_FILE_UCD.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM_TEST.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATA_CAMP_ECDF.py" beforeDir="false" afterPath="$PROJECT_DIR$/DATA_CAMP_ECDF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_SUB_CHG_FILE.py" beforeDir="false" afterPath="$PROJECT_DIR$/LOG_SUB_CHG_FILE.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQL_JOIN_LESSON_6.py" beforeDir="false" afterPath="$PROJECT_DIR$/SQL_JOIN_LESSON_6.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UCD_FILE.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,24 +23,60 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LOG_SUB_CHG_FILE.py">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="247">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
               <folding>
-                <element signature="e#37#56#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DATA_CAMP_ECDF.py">
+        <entry file="file://$PROJECT_DIR$/ENCODING_TESTS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="50" column="11" lean-forward="true" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+            <state relative-caret-position="265">
+              <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BINNING_TESTS.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="428">
+              <caret line="143" column="43" lean-forward="true" selection-start-line="143" selection-start-column="43" selection-end-line="143" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SVM_TEST.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="157" lean-forward="true" selection-start-line="148" selection-end-line="157" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SQL_JOIN_LESSON_6.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -55,19 +100,26 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/UCD_PROJECT.py" />
-        <option value="$PROJECT_DIR$/UCD_FILE.py" />
         <option value="$PROJECT_DIR$/UCD_PROJECT_FILE_2.py" />
-        <option value="$PROJECT_DIR$/SQL_JOIN_LESSON_6.py" />
         <option value="$PROJECT_DIR$/DATA_CAMP_1.py" />
-        <option value="$PROJECT_DIR$/DATA_CAMP_ECDF.py" />
         <option value="$PROJECT_DIR$/NPLOG_FILE.py" />
+        <option value="$PROJECT_DIR$/DATA_CAMP_ECDF.py" />
+        <option value="$PROJECT_DIR$/UCD_FILE.py" />
+        <option value="$PROJECT_DIR$/SQL_JOIN_LESSON_6.py" />
+        <option value="$PROJECT_DIR$/LOG_SUB_CHG_FILE.py" />
+        <option value="$PROJECT_DIR$/ML_FILE_UCD.py" />
+        <option value="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" />
+        <option value="$PROJECT_DIR$/ENCODING_TESTS.py" />
+        <option value="$PROJECT_DIR$/SVM_TEST.py" />
+        <option value="$PROJECT_DIR$/BINNING_TESTS.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="62" />
-    <option name="width" value="1826" />
-    <option name="height" value="962" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1785" />
+    <option name="height" value="1010" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -75,7 +127,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -87,11 +138,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -105,8 +157,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.NPLOG_FILE">
-    <configuration name="DATA_CAMP_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.BINNING_TESTS">
+    <configuration name="BINNING_TESTS" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -118,7 +170,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\amcgrat\PycharmProjects\UCD_DATA_ANALYSIS\DATA_CAMP_ECDF.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BINNING_TESTS.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -127,7 +179,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="DATA_CAMP_ECDF" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="CMS_CONNECT_AND_DOWNLOAD_DATA" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -139,7 +191,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DATA_CAMP_ECDF.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -148,7 +200,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NPLOG_FILE" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="ENCODING_TESTS" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -160,7 +212,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\amcgrat\PycharmProjects\UCD_DATA_ANALYSIS\LOG_SUB_CHG_FILE.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ENCODING_TESTS.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -190,6 +242,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="SVM_TEST" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="UCD_DATA_ANALYSIS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SVM_TEST.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="UCD_FILE" type="PythonConfigurationType" factoryName="Python">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -202,7 +275,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UCD_FILE.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\amcgrat\PycharmProjects\UCD_DATA_ANALYSIS\CMS_CONNECT_AND_DOWNLOAD_DATA.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -232,34 +305,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="UCD_PROJECT_FILE_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="UCD_DATA_ANALYSIS" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UCD_PROJECT_FILE_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.NPLOG_FILE" />
-        <item itemvalue="Python.DATA_CAMP_ECDF" />
-        <item itemvalue="Python.DATA_CAMP_1" />
+        <item itemvalue="Python.BINNING_TESTS" />
+        <item itemvalue="Python.SVM_TEST" />
         <item itemvalue="Python.SQL_JOIN_LESSON_6" />
-        <item itemvalue="Python.UCD_PROJECT_FILE_2" />
+        <item itemvalue="Python.ENCODING_TESTS" />
+        <item itemvalue="Python.CMS_CONNECT_AND_DOWNLOAD_DATA" />
       </list>
     </recent_temporary>
   </component>
@@ -393,27 +445,34 @@
       <option name="project" value="LOCAL" />
       <updated>1615456096724</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Commit 1 3/22/2021">
+      <created>1616418540287</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1616418540288</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="62" y="0" width="1826" height="962" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14149888" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11959958" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24849217" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36619717" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30267754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.43881336" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.19777504" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32880098" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3655006" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -434,25 +493,43 @@
     <MESSAGE value="Commit Lesson 7 3/10/2021" />
     <MESSAGE value="Commit Lesson 7 3/11/2021" />
     <MESSAGE value="Commit Lesson 7 3/11/2021 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Lesson 7 3/11/2021 2" />
+    <MESSAGE value="Commit 1 3/22/2021" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 1 3/22/2021" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/UCD_PROJECT.py">
+    <entry file="file://$USER_HOME$/Anaconda3/envs/UCD_DATA_ANALYSIS/Lib/site-packages/category_encoders/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        <state relative-caret-position="1811">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ML_FILE_UCD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="43" column="54" lean-forward="true" selection-start-line="41" selection-end-line="43" selection-end-column="54" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UCD_FILE.py">
+    <entry file="file://$PROJECT_DIR$/DATA_CAMP_ECDF.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        <state relative-caret-position="704">
+          <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UCD_PROJECT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -464,32 +541,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SQL_JOIN_LESSON_6.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="13" column="68" lean-forward="true" selection-start-line="12" selection-end-line="13" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DATA_CAMP_ECDF.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="50" column="11" lean-forward="true" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LOG_SUB_CHG_FILE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="1030">
+          <caret line="47" column="46" lean-forward="true" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
           <folding>
             <element signature="e#37#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SQL_JOIN_LESSON_6.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ENCODING_TESTS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SVM_TEST.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="157" lean-forward="true" selection-start-line="148" selection-end-line="157" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BINNING_TESTS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="143" column="43" lean-forward="true" selection-start-line="143" selection-start-column="43" selection-end-line="143" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
