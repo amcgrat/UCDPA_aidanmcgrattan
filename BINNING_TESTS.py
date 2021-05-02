@@ -11,8 +11,15 @@ from sklearn.linear_model import LogisticRegressionCV
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report,accuracy_score
 from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
+from sklearn.svm import SVC, LinearSVC, NuSVC
 from sklearn.model_selection import RandomizedSearchCV
+from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
+import warnings
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 pd.set_option('display.max_rows', 20)
 pd.set_option('display.max_columns', None)
@@ -81,131 +88,50 @@ for col in ['hcpcs_cd',
 y = results_df_sample['denied']
 
 
-
 results_df_sample.drop(['psps_submitted_charge_amt',
                         'psps_submitted_service_cnt',
                         'chg_per_svc',
                         'denied',
                         'psps_denied_services_cnt'], inplace=True,axis = 1)
 
-
-
 X_train, X_test, y_train, y_test = train_test_split(results_df_sample, y, stratify=y,test_size=0.20, random_state=123)
 
-print(X_train.info())
-print(X_test.info())
+classifiers = [('LogisticRegression',LogisticRegression()),
+               ('LinearSVC',LinearSVC()),
+               ('KNeighborsClassifier',KNeighborsClassifier()),
+               ('SGDClassifier',SGDClassifier()),
+               ('Gaussian',GaussianNB()),
+               ('SVC',SVC(C=11,kernel='rbf',gamma=1)),
+               ('NuSVC',NuSVC()),
+               ('RandomForestClassifier',RandomForestClassifier(n_estimators= 200,random_state=123))]
 
-#Will not increase number of columns, one per category transformed.  May reduce target leakage and overfitting present in LOO
-#CBE_encoder = CatBoostEncoder(cols =['hcpcs_cd',
-                                #'carrier_num',
-                                #'pricing_locality_cd',
-                                #'type_of_service_cd',
-                                #'place_of_service_cd',
-                                #'provider_spec_cd',
-                                #'psps_hcpcs_asc_ind_cd',
-                                #'hcpcs_betos_cd',
-                                #'hcpcs_initial_modifier_cd',
-                                #'hcpcs_second_modifier_cd',
-                                #'cd_categories'])
-#X_train_enc = CBE_encoder.fit_transform(X_train, y_train)
-#X_test_enc = CBE_encoder.transform(X_test)
+encoders = [('WOEEncoder',WOEEncoder()),
+            ('TargetEncoder',TargetEncoder()),
+            ('CatBoostEncoder',CatBoostEncoder())]
 
-#TE_encoder = TargetEncoder()
-#X_train_enc = TE_encoder.fit_transform(X_train, y_train)
-#X_test_enc = TE_encoder.transform(X_test)
+enc_name = []
+clf_name = []
+score = []
 
-#WOE_encoder = WOEEncoder()
-#X_train_enc = WOE_encoder.fit_transform(X_train, y_train)
-#X_test_enc = WOE_encoder.transform(X_test)
+for index, encoder in enumerate (encoders):
+    for index, classifier in enumerate (classifiers):
+        pipe = Pipeline(steps=[('encoder', encoder[1]),
+                            ('scaler', MinMaxScaler()),
+                            ('classifier', classifier[1])])
+        pipe.fit(X_train, y_train)
+        #print(encoder,classifier, " model score: %.3f" % pipe.score(X_test, y_test))
+        pipe_pred = pipe.predict(X_test)
 
-CBE_encoder = CatBoostEncoder()
-X_train_enc = CBE_encoder.fit_transform(X_train, y_train)
-X_test_enc = CBE_encoder.transform(X_test)
+        enc_name.append(encoder[0])
+        clf_name.append(classifier[0])
+        score.append(accuracy_score(y_test,pipe_pred))
 
-scaler = MinMaxScaler()
-X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
-X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
+        print(encoder[0],classifier[0],accuracy_score(y_test,pipe_pred))
 
-#LR = LogisticRegression(C=10,max_iter=100,solver = 'lbfgs')
-#LR.fit(X_train_enc_scaled, y_train)
-#LR_pred = LR.predict(X_test_enc_scaled)
-#print('LR Accuracy :',accuracy_score(y_test,LR_pred))
-#print(LR.get_params())
+baseline = pd.DataFrame()
+baseline['Encoder'] = enc_name
+baseline['Classifier'] = clf_name
+baseline['Accuracy Score'] = score
 
-#print( confusion_matrix(y_test,LR_pred))
-#print(classification_report(y_test,LR_pred))
-
-
-#from sklearn.svm import SVC, LinearSVC, NuSVC
-#LSVC = LinearSVC()
-#LSVC.fit(X_train_enc_scaled,y_train)
-#LSVC_pred = LSVC.predict(X_test_enc_scaled)
-#print("LSVC Accuracy :", accuracy_score(y_test, LSVC_pred,))
-#print(LSVC.get_params())
-
-#print( confusion_matrix(y_test,LSVC_pred))
-#print(classification_report(y_test,LSVC_pred))
-
-
-from sklearn.neighbors import KNeighborsClassifier
-KNN = KNeighborsClassifier(algorithm='kd_tree', metric='manhattan', n_neighbors=9,weights='distance')
-KNN.fit(X_train_enc_scaled,y_train)
-KNN_pred = KNN.predict(X_test_enc_scaled)
-print('KNN Accuracy :',accuracy_score(y_test,KNN_pred))
-print(KNN.get_params)
-
-print( confusion_matrix(y_test,KNN_pred))
-print(classification_report(y_test,KNN_pred))
-
-
-#SGDC = SGDClassifier()
-#SGDC.fit(X_train_enc_scaled,y_train)
-#SGDC_pred = SGDC.predict(X_test_enc_scaled)
-#print("SGDC Accuracy :", accuracy_score(y_test, SGDC_pred))
-#print(SGDC.get_params())
-
-#print( confusion_matrix(y_test,SGDC_pred))
-#print(classification_report(y_test,SGDC_pred))
-
-#GnB = GaussianNB()
-#GnB.fit(X_train_enc_scaled,y_train)
-#GnB_pred = GnB.predict(X_test_enc_scaled)
-#print("GnB Accuracy :", accuracy_score(y_test, GnB_pred))
-#print(GnB.get_params())
-
-#print( confusion_matrix(y_test,GnB_pred))
-#print(classification_report(y_test,GnB_pred))
-
-
-#SVC = SVC(C=11,kernel='rbf',gamma=1)
-#SVC.fit(X_train_enc_scaled,y_train)
-#SVC_pred = SVC.predict(X_test_enc_scaled)
-#print("SVC Accuracy :", accuracy_score(y_test, SVC_pred))
-#print(SVC.get_params())
-
-#print( confusion_matrix(y_test,SVC_pred))
-#print(classification_report(y_test,SVC_pred))
-
-
-#NSVC = NuSVC()
-#NSVC.fit(X_train_enc_scaled,y_train)
-#NSVC_pred = NSVC.predict(X_test_enc_scaled)
-#print("NSVC Accuracy :", accuracy_score(y_test, NSVC_pred))
-#print(NSVC.get_params())
-
-#print( confusion_matrix(y_test,NSVC_pred))
-#print(classification_report(y_test,NSVC_pred))
-
-
-#from sklearn.ensemble import RandomForestClassifier
-
-#RFC = RandomForestClassifier()
-#RFC.fit(X_train_enc_scaled,y_train)
-#RFC_pred = RFC.predict(X_test_enc_scaled)
-#print("RF Accuracy :", accuracy_score(y_test, RFC_pred))
-#print (RFC.get_params())
-
-#print( confusion_matrix(y_test,RFC_pred))
-#print(classification_report(y_test,RFC_pred))
-
+print(baseline.head(10))
 

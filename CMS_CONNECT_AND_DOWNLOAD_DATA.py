@@ -51,9 +51,9 @@ hcpcs_cs_cat = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/H
     #bins.append(i)
 
 #create sample dataframe
-results_df_sample =  results_df.sample(frac = 0.05,random_state=123)
+results_df_sample =  results_df.sample(frac = 0.10,random_state=123)
 print(results_df_sample.shape)
-results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE.csv')
+results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_10.csv')
 
 #join dataframe to hcpcs code categories
 results_df_sample=pd.merge(results_df_sample, hcpcs_cs_cat, on=['hcpcs_cd'], how='left')
