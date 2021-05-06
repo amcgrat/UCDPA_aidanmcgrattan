@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sodapy import Socrata
 from category_encoders import *
 import category_encoders as ce
 
@@ -11,8 +10,11 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 pd.set_option('display.max_colwidth', None)
 
-client = Socrata("data.cms.gov", None)
-results = client.get('efgi-jnkv',
+
+def api_connection():
+    from sodapy import Socrata
+    client = Socrata("data.cms.gov", None)
+    results = client.get('efgi-jnkv',
                      select ='hcpcs_cd,'
                              'psps_submitted_charge_amt,'
                              'hcpcs_initial_modifier_cd,'
@@ -28,10 +30,13 @@ results = client.get('efgi-jnkv',
                              'hcpcs_betos_cd',
                      where = 'psps_submitted_charge_amt > 5',
                      limit = 3400000)
-results_df = pd.DataFrame.from_records(results)
-print(results_df.shape)
-client.download_attachments("efgi-jnkv", download_dir="~/Desktop")
-client.close()
+    results_df = pd.DataFrame.from_records(results)
+
+    client.download_attachments("efgi-jnkv", download_dir="~/Desktop")
+    client.close()
+    return results_df
+
+results_df = api_connection()
 
 hcpcs_cs_cat = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_1.csv')
 
@@ -53,7 +58,7 @@ hcpcs_cs_cat = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/H
 #create sample dataframe
 results_df_sample =  results_df.sample(frac = 0.10,random_state=123)
 print(results_df_sample.shape)
-results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_10.csv')
+results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_function_test.csv',index=False)
 
 #join dataframe to hcpcs code categories
 results_df_sample=pd.merge(results_df_sample, hcpcs_cs_cat, on=['hcpcs_cd'], how='left')
@@ -62,7 +67,6 @@ results_df_sample=pd.merge(results_df_sample, hcpcs_cs_cat, on=['hcpcs_cd'], how
 
 #replace null values in denied service count column
 results_df_sample['psps_denied_services_cnt'].replace(np.NaN,'0',inplace=True)
-
 
 #change datatypes for submitted amount and denied service count columns
 cols = ['psps_denied_services_cnt', 'psps_submitted_charge_amt','psps_submitted_service_cnt']
@@ -73,8 +77,6 @@ results_df_sample['chg_per_svc'] = results_df_sample['psps_submitted_charge_amt'
 #create denied column and convert to int.  This will function as the traget/label feature
 results_df_sample['denied'] = results_df_sample['psps_denied_services_cnt']>0
 results_df_sample['denied'] = results_df_sample["denied"].astype(int)
-
-
 
 print(results_df_sample.info())
 
