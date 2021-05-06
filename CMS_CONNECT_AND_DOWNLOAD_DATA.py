@@ -90,4 +90,8 @@ sns.kdeplot(data=results_df_sample, x="psps_submitted_charge_amt",hue='denied',l
 #plt.xlabel("CHARGE PER SERVCE")
 #plt.title("CHARGE PER SERVCE")
 #plt.legend(['DENIED/ACCEPTED'])
+
 plt.show()
+
+
+

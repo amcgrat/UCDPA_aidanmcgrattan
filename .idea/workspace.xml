@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33c8f514-6dcc-4047-85f1-3332aaec4cbe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/read_sheets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BINNING_TESTS.py" beforeDir="false" afterPath="$PROJECT_DIR$/BINNING_TESTS.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" beforeDir="false" afterPath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,10 +18,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ENCODING_TESTS.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-94">
+              <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-end-line="5" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BINNING_TESTS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="36" column="102" selection-start-line="36" selection-end-line="36" selection-end-column="102" />
+            <state relative-caret-position="291">
+              <caret line="105" column="64" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -30,7 +38,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/read_sheets.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="132">
@@ -67,18 +75,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DL_TEST.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="99" column="57" selection-start-line="99" selection-start-column="57" selection-end-line="99" selection-end-column="57" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RANDOMCV_KNN.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -93,8 +89,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="91" column="32" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
+            <state relative-caret-position="-400">
+              <caret line="3" column="21" lean-forward="true" selection-start-line="2" selection-end-line="3" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/graphs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="99" column="39" lean-forward="true" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -105,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RANDOMCV_SVC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
+            <state relative-caret-position="693">
               <caret line="96" selection-start-line="96" selection-end-line="96" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
@@ -119,18 +124,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="305">
               <caret line="82" column="17" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GRID_SRCHRCV_RANDOM_FOREST.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="73" column="57" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="57" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -156,6 +149,7 @@
     <setting file="file://$PROJECT_DIR$/RANDOMCV_RANDOM_FOREST.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Random_Forest_PARAM.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BINARY_ENCODING.py" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/graphs.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DL_TEST.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/RANDOMCV_KNN.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/RANDOMCV_SVC.py" root0="SKIP_HIGHLIGHTING" />
@@ -192,17 +186,18 @@
         <option value="$PROJECT_DIR$/RANDOMCV_KNN.py" />
         <option value="$PROJECT_DIR$/ADA_BOOST.py" />
         <option value="$PROJECT_DIR$/ENSEMBLE_CLF.py" />
-        <option value="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" />
         <option value="$PROJECT_DIR$/BINNING_TESTS.py" />
         <option value="$PROJECT_DIR$/read_sheets.py" />
+        <option value="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" />
+        <option value="$PROJECT_DIR$/graphs.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="73" />
-    <option name="y" value="29" />
-    <option name="width" value="1801" />
-    <option name="height" value="968" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="77" />
+    <option name="y" value="-14" />
+    <option name="width" value="1631" />
+    <option name="height" value="1022" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -240,7 +235,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.read_sheets">
+  <component name="RunManager" selected="Python.graphs">
     <configuration name="ADA_BOOST" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -304,27 +299,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ENSEMBLE_CLF" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="UCD_DATA_ANALYSIS" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ENSEMBLE_CLF.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="UCD_FILE" type="PythonConfigurationType" factoryName="Python">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -367,6 +341,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="graphs" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="UCD_DATA_ANALYSIS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="read_sheets" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -390,11 +385,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.graphs" />
         <item itemvalue="Python.read_sheets" />
         <item itemvalue="Python.BINNING_TESTS" />
         <item itemvalue="Python.CMS_CONNECT_AND_DOWNLOAD_DATA" />
         <item itemvalue="Python.ADA_BOOST" />
-        <item itemvalue="Python.ENSEMBLE_CLF" />
       </list>
     </recent_temporary>
   </component>
@@ -556,27 +551,34 @@
       <option name="project" value="LOCAL" />
       <updated>1619976694261</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Commit 1 2/05/2021">
+      <created>1620307509875</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1620307509875</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="73" y="29" width="1801" height="968" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13442995" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12486828" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31497005" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33261105" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30267754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.19609967" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.42361864" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3655006" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.36511377" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -614,16 +616,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
           <caret line="151" column="33" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ENCODING_TESTS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2068">
-          <caret line="94" column="56" lean-forward="true" selection-start-line="94" selection-start-column="56" selection-end-line="94" selection-end-column="56" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -777,9 +769,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/read_sheets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-400">
+          <caret line="3" column="21" lean-forward="true" selection-start-line="2" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/RANDOMCV_SVC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
+        <state relative-caret-position="693">
           <caret line="96" selection-start-line="96" selection-end-line="96" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
@@ -787,32 +796,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="91" column="32" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BINNING_TESTS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="36" column="102" selection-start-line="36" selection-end-line="36" selection-end-column="102" />
+        <state relative-caret-position="291">
+          <caret line="105" column="64" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/read_sheets.py">
+    <entry file="file://$PROJECT_DIR$/ENCODING_TESTS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        <state relative-caret-position="-94">
+          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="99" column="39" lean-forward="true" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
