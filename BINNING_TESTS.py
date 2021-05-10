@@ -32,7 +32,7 @@ def display_settings():
 display_settings()
 
 #import csv files.
-results_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE.csv')
+results_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_balanced.csv')
 independent_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_001.csv')
 hcpcs_cs_cat = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_1.csv')
 
@@ -83,6 +83,8 @@ for col in ['hcpcs_cd',
             'chg_per_svc_binn']:
     results_df_sample[col] = results_df_sample[col].astype('category')
 
+
+print(results_df_sample.info())
 
 y = results_df_sample['denied']
 
@@ -143,7 +145,7 @@ def model_results():
         baseline['Classifier']=clf_name
         baseline['Accuracy Score']=acc_score
         baseline['f1 Score']=F1_score
-        baseline.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/clf_enc_eval_5.csv',index=False)
+        baseline.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/clf_enc_eval_bal.csv',index=False)
         baseline_clf=baseline.iloc[baseline.groupby(['Classifier']).apply(lambda x: x['Accuracy Score'].idxmax())]
         return baseline_clf
 

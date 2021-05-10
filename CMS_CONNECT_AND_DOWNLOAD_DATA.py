@@ -83,9 +83,12 @@ print(results_df_sample.info())
 df_denied_chg = results_df_sample[results_df_sample['denied'] ==1]
 df_accepted_chg = results_df_sample[results_df_sample['denied'] !=1]
 
+print(results_df_sample.info())
+
 #sns.kdeplot(data=df_denied_chg, x="psps_submitted_charge_amt",fill=True)
 #sns.kdeplot(data=df_denied_chg, x="psps_submitted_charge_amt",fill=True)
 sns.kdeplot(data=results_df_sample, x="psps_submitted_charge_amt",hue='denied',log_scale=True,fill=True,bw_adjust=.75)
+
 
 #plt.xlabel("CHARGE PER SERVCE")
 #plt.title("CHARGE PER SERVCE")
