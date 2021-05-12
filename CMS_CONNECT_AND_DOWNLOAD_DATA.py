@@ -56,17 +56,29 @@ hcpcs_cs_cat = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/H
     #bins.append(i)
 
 #create sample dataframe
-results_df_sample =  results_df.sample(frac = 0.10,random_state=123)
+results_df_sample =  results_df.sample(frac = 0.20,random_state=123)
 print(results_df_sample.shape)
-results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_function_test.csv',index=False)
+#padcodes hcpcs_cd with zeros
+results_df_sample['hcpcs_cd']=results_df_sample.State.str.pad(5,side='left',fillchar='0')
+#output file to disk
+results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_20.csv',index=False)
+
 
 #join dataframe to hcpcs code categories
 results_df_sample=pd.merge(results_df_sample, hcpcs_cs_cat, on=['hcpcs_cd'], how='left')
 
-
-
 #replace null values in denied service count column
 results_df_sample['psps_denied_services_cnt'].replace(np.NaN,'0',inplace=True)
+
+
+df_accepted = results_df_sample[results_df_sample['accepted'] ==1]
+df_denied = results_df_sample[results_df_sample['accepted'] !=1]
+df_accepted =  df_accepted.sample(frac = 0.50,random_state=123)
+print(df_denied.shape)
+print(df_accepted.shape)
+results_df_sample = df_denied.append(df_accepted)
+print(results_df_sample.shape)
+
 
 #change datatypes for submitted amount and denied service count columns
 cols = ['psps_denied_services_cnt', 'psps_submitted_charge_amt','psps_submitted_service_cnt']
@@ -75,8 +87,8 @@ results_df_sample[cols] = results_df_sample[cols].apply(pd.to_numeric, errors='c
 results_df_sample['chg_per_svc'] = results_df_sample['psps_submitted_charge_amt']/results_df_sample['psps_submitted_service_cnt']
 
 #create denied column and convert to int.  This will function as the traget/label feature
-results_df_sample['denied'] = results_df_sample['psps_denied_services_cnt']>0
-results_df_sample['denied'] = results_df_sample["denied"].astype(int)
+results_df_sample['accepted'] = results_df_sample['psps_denied_services_cnt']>0
+results_df_sample['accepted'] = results_df_sample["accepted"].astype(int)
 
 print(results_df_sample.info())
 
@@ -87,12 +99,10 @@ print(results_df_sample.info())
 
 #sns.kdeplot(data=df_denied_chg, x="psps_submitted_charge_amt",fill=True)
 #sns.kdeplot(data=df_denied_chg, x="psps_submitted_charge_amt",fill=True)
-sns.kdeplot(data=results_df_sample, x="psps_submitted_charge_amt",hue='denied',log_scale=True,fill=True,bw_adjust=.75)
+sns.kdeplot(data=results_df_sample, x="psps_submitted_charge_amt",hue='accepted',log_scale=True,fill=True,bw_adjust=.75)
+sns.kdeplot(data=results_df_sample, x="psps_submitted_service_cnt",hue='accepted',log_scale=True,fill=True,bw_adjust=.75)
+sns.kdeplot(data=results_df_sample, x="psps_denied_services_cnt",hue='accepted',log_scale=True,fill=True,bw_adjust=.75)
 
-
-#plt.xlabel("CHARGE PER SERVCE")
-#plt.title("CHARGE PER SERVCE")
-#plt.legend(['DENIED/ACCEPTED'])
 
 plt.show()
 
