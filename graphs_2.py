@@ -12,29 +12,24 @@ import plotly.graph_objects as go
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 
-
-
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-
-def display_settings():
-    pd.set_option('display.max_rows', 10)
-    pd.set_option('display.max_columns', None)
-    pd.set_option('display.width', None)
-    pd.set_option('display.max_colwidth', None)
-
-display_settings()
+pd.set_option('display.max_rows', 10)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', None)
 
 #import csv files.
-results_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_10.csv')
+results_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_20.csv')
 independent_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_001.csv')
 hcpcs_cs_cat = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_1.csv')
 
 #join dataframe to code categories dataframe.
 results_df_sample=pd.merge(results_df_sample, hcpcs_cs_cat, on=['hcpcs_cd'], how='left')
 
+
 #Replace nulls in denied services count with zero.
-results_df_sample['psps_denied_services_cnt'].replace(np.NaN,'0',inplace=True)
+results_df_sample['psps_denied_services_cnt'].replace(np.NaN,0,inplace=True)
 results_df_sample['hcpcs_initial_modifier_cd'].replace(np.NaN,'NA',inplace=True)
 results_df_sample['hcpcs_second_modifier_cd'].replace(np.NaN,'NA',inplace=True)
 results_df_sample['hcpcs_betos_cd'].replace(np.NaN,'NA',inplace=True)
@@ -43,20 +38,21 @@ results_df_sample['pricing_locality_cd'].replace(np.NaN,'NA',inplace=True)
 results_df_sample['psps_hcpcs_asc_ind_cd'].replace(np.NaN,'NA',inplace=True)
 
 
-#results_df_sample['sub_chg_log']= np.log(results_df_sample['psps_submitted_charge_amt'])
-#results_df_sample['sub_svc_log']= np.log(results_df_sample['psps_submitted_service_cnt'])
 
-results_df_sample = results_df_sample.astype({'psps_denied_services_cnt': np.int32,
-                                              'psps_submitted_charge_amt': np.int32,
-                                              'psps_submitted_service_cnt':np.int32})
+def chg_types(df):
+    results_df = results_df_sample.astype({'psps_denied_services_cnt': np.int32,
+                                           'psps_submitted_charge_amt': np.int32,
+                                           'psps_submitted_service_cnt':np.int32})
+    return results_df
 
+results_df_sample = chg_types(results_df_sample)
 
 #calculate charge per service and create new column
 results_df_sample['chg_per_svc'] = results_df_sample['psps_submitted_charge_amt']/results_df_sample['psps_submitted_service_cnt']
 
-results_df_sample['sub_chg_amt_binn'] = pd.qcut(results_df_sample['psps_submitted_charge_amt'],q = 25,labels=False,duplicates='drop')
-results_df_sample['sub_svc_cnt_binn'] = pd.qcut(results_df_sample['psps_submitted_service_cnt'],q = 25,labels=False,duplicates='drop')
-results_df_sample['chg_per_svc_binn'] = pd.qcut(results_df_sample['chg_per_svc'],q = 25,labels=False,duplicates='drop')
+results_df_sample['sub_chg_amt_binn'] = pd.qcut(results_df_sample['psps_submitted_charge_amt'],q = 100,labels=False,duplicates='drop')
+results_df_sample['sub_svc_cnt_binn'] = pd.qcut(results_df_sample['psps_submitted_service_cnt'],q = 100,labels=False,duplicates='drop')
+results_df_sample['chg_per_svc_binn'] = pd.qcut(results_df_sample['chg_per_svc'],q = 100,labels=False,duplicates='drop')
 
 #create denied column and convert to int.  This will function as the target/label feature
 results_df_sample['accepted'] = results_df_sample['psps_denied_services_cnt']<1
@@ -66,19 +62,17 @@ results_df_sample['accepted'] = results_df_sample["accepted"].astype(int)
 results_df_sample['carrier_num'] ='cn_' + results_df_sample['carrier_num'].astype(str)
 results_df_sample['place_of_service_cd'] ='pos_' + results_df_sample['place_of_service_cd'].astype(str)
 
-X = results_df_sample
-y = results_df_sample['accepted']
+#X = results_df_sample
+#y = results_df_sample['accepted']
+
 
 df_accepted = results_df_sample[results_df_sample['accepted'] ==1]
 df_denied = results_df_sample[results_df_sample['accepted'] !=1]
 
-
 df_accepted =  df_accepted.sample(frac = 0.50,random_state=123)
 results_df_sample = df_denied.append(df_accepted)
 
-results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_balanced.csv',index=False)
-
-for col in ['hcpcs_cd',
+cols = ['hcpcs_cd',
             'carrier_num',
             'pricing_locality_cd',
             'type_of_service_cd',
@@ -91,8 +85,7 @@ for col in ['hcpcs_cd',
             'cd_categories',
             'sub_chg_amt_binn',
             'sub_svc_cnt_binn',
-            'chg_per_svc_binn']:
-    results_df_sample[col] = results_df_sample[col].astype('category')
+            'chg_per_svc_binn']
 
 def cat_df(code,n):
     code_top_n_denied = df_denied[code].value_counts(sort=True).nlargest(n)
@@ -138,12 +131,13 @@ def show_plts():
     sns.lineplot(data = hcpcs_initial_modifier_cd,x = 'hcpcs_initial_modifier_cd',y = 'accepted',hue = 'class',ax = axes[1,3],legend = False)
     sns.lineplot(data = hcpcs_second_modifier_cd,x = 'hcpcs_second_modifier_cd',y = 'accepted',hue = 'class',ax = axes[2,0],legend = False)
     sns.lineplot(data = cd_categories,x = 'cd_categories',y = 'accepted',hue = 'class',ax = axes[2,1],legend = False)
-    sns.lineplot(data = sub_chg_amt_binn, x='sub_chg_amt_binn', y='accepted', hue='class', ax=axes[2, 2], legend=False)
-    sns.lineplot(data = sub_svc_cnt_binn, x='sub_svc_cnt_binn', y='accepted', hue='class', ax=axes[2, 3], legend=False)
-    sns.lineplot(data = chg_per_svc_binn, x='chg_per_svc_binn', y='accepted', hue='class', ax=axes[3, 0], legend=False)
-    sns.kdeplot(data=results_df_sample, x="psps_submitted_charge_amt", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[3,1],legend=False )
+    sns.lineplot(data = sub_chg_amt_binn, x='sub_chg_amt_binn', y='accepted', hue='class', sort= True,ax=axes[2, 2], legend=False)
+    sns.lineplot(data = sub_svc_cnt_binn, x='sub_svc_cnt_binn', y='accepted', hue='class', sort= True,ax=axes[2, 3], legend=False)
+    sns.lineplot(data = chg_per_svc_binn, x='chg_per_svc_binn', y='accepted', hue='class',sort= True, ax=axes[3, 0], legend=False)
+    sns.kdeplot(data=results_df_sample, x="psps_submitted_charge_amt", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[3,1],legend = False)
     sns.kdeplot(data=results_df_sample, x="psps_submitted_service_cnt", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[3,2], legend=False)
-    sns.kdeplot(data=results_df_sample, x="chg_per_svc", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[3, 3], legend=False)
+    sns.kdeplot(data=results_df_sample, x="chg_per_svc", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[3,3], legend=False)
+
     for i in range (0,4):
         for j in range(0,4):
 
@@ -153,15 +147,15 @@ def show_plts():
             axes[i,j].set_yticks([])
             axes[i,j].set_xticks([])
             axes[i,j].set_facecolor("whitesmoke")
+
     axes[3,3].set_ylabel("density")
     axes[3,2].set_ylabel("density")
     axes[3,1].set_ylabel("density")
     plt.suptitle("Accepted/Denied Frequencies",fontsize =16)
+
     fig.legend(title='', bbox_to_anchor=(0.1,0.875),  labels=['Denied', 'Accepted'])
 
     plt.show()
-
-
 
 show_plts()
 
