@@ -4,6 +4,10 @@ from category_encoders import *
 import category_encoders as ce
 import matplotlib.pyplot as plt
 import seaborn as sns
+from category_encoders import *
+import warnings
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def set_display():
     pd.set_option('display.max_rows', 20)
@@ -13,7 +17,7 @@ def set_display():
 
 set_display()
 
-def api_connection():
+def api_connection(n):
     from sodapy import Socrata
     client = Socrata("data.cms.gov", None)
     results = client.get('efgi-jnkv',
@@ -31,14 +35,14 @@ def api_connection():
                              'psps_hcpcs_asc_ind_cd,'
                              'hcpcs_betos_cd',
                      where = 'psps_submitted_charge_amt > 5',
-                     limit = 3400000)
+                     limit = n)
     results_df = pd.DataFrame.from_records(results)
 
     client.download_attachments("efgi-jnkv", download_dir="~/Desktop")
     client.close()
     return results_df
 
-results_df = api_connection()
+results_df = api_connection(1500000)
 
 #create sample dataframe
 def create_sample(df,n):
@@ -53,19 +57,20 @@ def create_sample(df,n):
     #results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_20.csv',index=False)
     return results_df_sample
 
-results_sample = create_sample(results_df,0.2)
+results_sample = create_sample(results_df,0.1)
 
 #remove nulls
-def remove_nulls():
+def remove_nulls(df):
     #remove null values
-    results_sample['psps_denied_services_cnt'].replace(np.NaN,'0',inplace=True)
-    results_sample['hcpcs_initial_modifier_cd'].replace(np.NaN,'NA',inplace=True)
-    results_sample['hcpcs_second_modifier_cd'].replace(np.NaN,'NA',inplace=True)
-    results_sample['hcpcs_betos_cd'].replace(np.NaN,'NA',inplace=True)
-    results_sample['psps_hcpcs_asc_ind_cd'].replace(np.NaN,'NA',inplace=True)
-    results_sample['pricing_locality_cd'].replace(np.NaN,'NA',inplace=True)
+    df['psps_denied_services_cnt'].replace(np.NaN,'0',inplace=True)
+    df['hcpcs_initial_modifier_cd'].replace(np.NaN,'NA',inplace=True)
+    df['hcpcs_second_modifier_cd'].replace(np.NaN,'NA',inplace=True)
+    df['hcpcs_betos_cd'].replace(np.NaN,'NA',inplace=True)
+    df['psps_hcpcs_asc_ind_cd'].replace(np.NaN,'NA',inplace=True)
+    df['pricing_locality_cd'].replace(np.NaN,'NA',inplace=True)
+    return df
 
-remove_nulls()
+results_sample=remove_nulls(results_sample)
 
 def change_data_types(df):
     #change datatypes
@@ -77,11 +82,12 @@ def change_data_types(df):
 results_sample = change_data_types(results_sample)
 
 #prepend_string to column values
-def pre_pend():
-    results_sample_prep = results_sample['carrier_num'] = 'cn_' + results_sample['carrier_num'].astype(str)
-    results_sample_prep = results_sample['place_of_service_cd'] = 'pos_' + results_sample['place_of_service_cd'].astype(str)
+def pre_pend_cd(df):
+    results_sample['carrier_num'] = 'cn_' + results_sample['carrier_num'].astype(str)
+    results_sample['place_of_service_cd'] = 'pos_' + results_sample['place_of_service_cd'].astype(str)
+    return results_sample
 
-pre_pend()
+results_sample = pre_pend_cd(results_sample)
 
 #add new columns
 def add_new_cols(df):
@@ -93,7 +99,7 @@ def add_new_cols(df):
     results_sample['sub_svc_cnt_binn'] = pd.qcut(results_sample['psps_submitted_service_cnt'], q=60,labels=False, duplicates='drop')
     results_sample['chg_per_svc_binn'] = pd.qcut(results_sample['chg_per_svc'], q=60, labels=False,duplicates='drop')
 
-    # create denied column and convert to int.  This will function as the traget/label feature
+    #create denied column and convert to int.  This will function as the traget/label feature
     results_sample['accepted'] = results_sample['psps_denied_services_cnt'] < 1
     results_sample['accepted'] = results_sample["accepted"].astype(int)
     return results_sample
@@ -101,15 +107,14 @@ def add_new_cols(df):
 results_sample = add_new_cols(results_sample)
 
 def creat_den_accpt(df):
-    df_denied = results_sample[results_sample['accepted'] ==1]
-    df_accepted = results_sample[results_sample['accepted'] !=1]
+    df_denied = df[results_sample['accepted'] ==1]
+    df_accepted = df[results_sample['accepted'] !=1]
     return df_denied,df_accepted
 
 def creat_kde_df(df):
-    kde_df_table = results_sample[['psps_submitted_charge_amt','psps_submitted_service_cnt','chg_per_svc','accepted']]
+    kde_df_table = df[['psps_submitted_charge_amt','psps_submitted_service_cnt','chg_per_svc','accepted']]
     kde_df_table = kde_df_table.replace({'accepted': {1: 'accepted', 0: 'denied'}})
     return kde_df_table
-
 
 def cat_df(code,n):
     df_denied,df_accepted = creat_den_accpt(results_sample)
@@ -186,5 +191,102 @@ def show_plts():
     plt.show()
 
 show_plts()
+
+def create_target(df):
+    y = results_sample['accepted']
+    return y
+
+def del_cols():
+    results_sample.drop(['psps_submitted_charge_amt',
+                            'psps_submitted_service_cnt',
+                            'chg_per_svc',
+                            'accepted',
+                            'psps_denied_services_cnt'], inplace=True, axis=1)
+
+def split_data(df):
+    from sklearn.model_selection import train_test_split
+    y = create_target(results_sample)
+    del_cols()
+
+    X_train, X_test, y_train, y_test = train_test_split(results_sample, y, stratify=y,test_size=0.20, random_state=123)
+
+    return X_train,X_test,y_train, y_test
+
+def get_classifiers():
+    from sklearn.linear_model import LogisticRegression, SGDClassifier
+    from sklearn.svm import SVC, LinearSVC, NuSVC
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
+    from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier,GradientBoostingClassifier
+
+    classifiers = [('LogReg', LogisticRegression()),
+                   ('LinSVC', LinearSVC(random_state=123)),
+                   ('KNN', KNeighborsClassifier()),
+                   ('SGD', SGDClassifier(random_state=123)),
+                   ('Gauss', GaussianNB()),
+                   ('SVC', SVC(random_state=123)),
+                   ('RFC', RandomForestClassifier(random_state=123)),
+                   ('ADABoost', AdaBoostClassifier()),
+                   ('GradBoost', GradientBoostingClassifier())]
+    return classifiers
+
+get_classifiers()
+
+def get_encoders():
+    encoders = [('WOEEncoder', WOEEncoder()),
+                ('TargetEncoder', TargetEncoder()),
+                ('CatBoostEncoder', CatBoostEncoder())]
+    return encoders
+
+get_encoders()
+
+def plot_clfs(df):
+    fig, axes = plt.subplots(2, 1)
+    df.sort_values(by='accuracy_score',ascending=False,inplace = True)
+    sns.lineplot(data=df, x='classifier', y='accuracy_score', hue='encoder',ax = axes[0])
+    sns.lineplot(data=df, x='classifier', y='F1_score', hue='encoder',ax = axes[1])
+    plt.setp(axes[0].xaxis.get_majorticklabels(), rotation=45)
+    axes[1].set_facecolor("aliceblue")
+    plt.setp(axes[1].xaxis.get_majorticklabels(), rotation=45)
+    axes[0].set_facecolor("aliceblue")
+    plt.tight_layout()
+    plt.show()
+
+    plt.show()
+
+def evaluate_models():
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import MinMaxScaler
+    from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score
+
+    X_train,X_test,y_train, y_test = split_data(results_sample)
+
+    enc_name = []
+    clf_name = []
+    acc_score = []
+    F1_score = []
+
+    encoders = get_encoders()
+    classifiers = get_classifiers()
+    for index, encoder in enumerate(encoders):
+        for index, classifier in enumerate(classifiers):
+            pipe = Pipeline(steps=[('encoder', encoder[1]),
+                                   ('scaler', MinMaxScaler()),
+                                   ('classifier', classifier[1])])
+            pipe.fit(X_train, y_train)
+            pipe_pred = pipe.predict(X_test)
+            #print(encoder[0],classifier[0],accuracy_score(y_test,pipe_pred),f1_score(y_test, pipe_pred))
+            enc_name.append(encoder[0])
+            clf_name.append(classifier[0])
+            acc_score.append(accuracy_score(y_test, pipe_pred))
+            F1_score.append(f1_score(y_test, pipe_pred))
+
+    zippedList =  list(zip(enc_name, clf_name, acc_score,F1_score))
+    eval_results = pd.DataFrame(zippedList,columns = ['encoder' , 'classifier', 'accuracy_score','F1_score'])
+    eval_results_top = eval_results.iloc[eval_results.groupby(['classifier']).apply(lambda x: x['accuracy_score'].idxmax())]
+    plot_clfs(eval_results)
+    print(eval_results_top.sort_values(by = 'accuracy_score',ascending=False))
+
+evaluate_models()
 
 
