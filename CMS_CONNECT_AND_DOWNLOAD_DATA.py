@@ -5,11 +5,29 @@ import category_encoders as ce
 import matplotlib.pyplot as plt
 import seaborn as sns
 from category_encoders import *
+from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.svm import SVC, LinearSVC, NuSVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier,GradientBoostingClassifier
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score,confusion_matrix
+from sklearn.model_selection import train_test_split,cross_validate,GridSearchCV,RandomizedSearchCV
+from sklearn.pipeline import Pipeline
+import re
+
 import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def set_display():
+    '''
+        Sets Display Options.
+        Parameters:
+            N/A
+        Returns:
+            N/A
+    '''
     pd.set_option('display.max_rows', 20)
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
@@ -18,6 +36,15 @@ def set_display():
 set_display()
 
 def api_connection(n):
+    '''
+        Connects to API and downloads datafile and attachments
+        Parameters:
+            n(int): a whole number
+        Returns:
+            DataFrame: Pandas Dataframe with downloaded data from API
+        Outputs:
+            attachment: attachments from API
+    '''
     from sodapy import Socrata
     client = Socrata("data.cms.gov", None)
     results = client.get('efgi-jnkv',
@@ -38,14 +65,22 @@ def api_connection(n):
                      limit = n)
     results_df = pd.DataFrame.from_records(results)
 
-    client.download_attachments("efgi-jnkv", download_dir="~/Desktop")
+    client.download_attachments("efgi-jnkv", download_dir='C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS')
+
     client.close()
     return results_df
 
-results_df = api_connection(1500000)
+results_df = api_connection(3400000)
 
-#create sample dataframe
 def create_sample(df,n):
+    '''
+            Creates random sample of initial dataframe download
+            Parameters:
+                n(int): a decimal integer between 0 and 1
+                DataFrame: Pandas DataFrame
+            Returns:
+                DataFrame: Random sample of dataframe
+    '''
     results_df_sample =  results_df.sample(frac = n,random_state=123)
     #pad hcpcs_cd codes with zeros
     results_df_sample['hcpcs_cd']=results_df_sample.hcpcs_cd.str.pad(5,side='left',fillchar='0')
@@ -57,11 +92,21 @@ def create_sample(df,n):
     #results_df_sample.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_20.csv',index=False)
     return results_df_sample
 
-results_sample = create_sample(results_df,0.1)
+results_sample = create_sample(results_df,0.2)
 
-#remove nulls
+results_sample['hcpcs_new'] = results_sample.hcpcs_cd.apply(lambda x: x[-1:] if re.match(r'\d{4}[a-zA-Z]{1}',x) else x[:2])
+
+
+#re.fullmatch(pattern, str)
+
 def remove_nulls(df):
-    #remove null values
+    '''
+                Remove null values from selected columns
+                Parameters:
+                    DataFrame: Pandas DataFrame
+                Returns:
+                    DataFrame: Pandas DataFrame
+    '''
     df['psps_denied_services_cnt'].replace(np.NaN,'0',inplace=True)
     df['hcpcs_initial_modifier_cd'].replace(np.NaN,'NA',inplace=True)
     df['hcpcs_second_modifier_cd'].replace(np.NaN,'NA',inplace=True)
@@ -99,6 +144,10 @@ def add_new_cols(df):
     results_sample['sub_svc_cnt_binn'] = pd.qcut(results_sample['psps_submitted_service_cnt'], q=60,labels=False, duplicates='drop')
     results_sample['chg_per_svc_binn'] = pd.qcut(results_sample['chg_per_svc'], q=60, labels=False,duplicates='drop')
 
+    #results_sample['sub_chg_amt_binn'] = 'sub_chg_' + results_sample['place_of_service_cd'].astype(str)
+    #results_sample['sub_svc_cnt_binn'] = 'svc_cnt_' + results_sample['place_of_service_cd'].astype(str)
+    #results_sample['chg_per_svc_binn'] = 'cps_' + results_sample['place_of_service_cd'].astype(str)
+
     #create denied column and convert to int.  This will function as the traget/label feature
     results_sample['accepted'] = results_sample['psps_denied_services_cnt'] < 1
     results_sample['accepted'] = results_sample["accepted"].astype(int)
@@ -110,6 +159,7 @@ def creat_den_accpt(df):
     df_denied = df[results_sample['accepted'] ==1]
     df_accepted = df[results_sample['accepted'] !=1]
     return df_denied,df_accepted
+
 
 def creat_kde_df(df):
     kde_df_table = df[['psps_submitted_charge_amt','psps_submitted_service_cnt','chg_per_svc','accepted']]
@@ -195,47 +245,56 @@ show_plts()
 def create_target(df):
     y = results_sample['accepted']
     return y
+y = create_target(results_sample)
 
-def del_cols():
-    results_sample.drop(['psps_submitted_charge_amt',
-                            'psps_submitted_service_cnt',
+
+
+def del_cols(df):
+    results_sample.drop([#'psps_submitted_charge_amt',
+                            #'psps_submitted_service_cnt',
                             'chg_per_svc',
                             'accepted',
+                            #'cd_categories',
+                            'sub_chg_amt_binn',
+                            'sub_svc_cnt_binn',
                             'psps_denied_services_cnt'], inplace=True, axis=1)
+    return results_sample
+
+results_sample = del_cols(results_sample)
+
 
 def split_data(df):
-    from sklearn.model_selection import train_test_split
-    y = create_target(results_sample)
-    del_cols()
+    #y = create_target(results_sample)
+    #del_cols()
 
-    X_train, X_test, y_train, y_test = train_test_split(results_sample, y, stratify=y,test_size=0.20, random_state=123)
+    X_train, X_test, y_train, y_test = train_test_split(results_sample, y, stratify=y,test_size=0.10, random_state=123)
 
-    return X_train,X_test,y_train, y_test
+    return  X_train,X_test,y_train, y_test
+
+X_train,X_test,y_train, y_test = split_data(results_sample)
+
+
 
 def get_classifiers():
-    from sklearn.linear_model import LogisticRegression, SGDClassifier
-    from sklearn.svm import SVC, LinearSVC, NuSVC
-    from sklearn.neighbors import KNeighborsClassifier
-    from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
-    from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier,GradientBoostingClassifier
 
-    classifiers = [('LogReg', LogisticRegression()),
-                   ('LinSVC', LinearSVC(random_state=123)),
-                   ('KNN', KNeighborsClassifier()),
-                   ('SGD', SGDClassifier(random_state=123)),
-                   ('Gauss', GaussianNB()),
-                   ('SVC', SVC(random_state=123)),
-                   ('RFC', RandomForestClassifier(random_state=123)),
-                   ('ADABoost', AdaBoostClassifier()),
-                   ('GradBoost', GradientBoostingClassifier())]
+    classifiers = [#('LogReg', LogisticRegression(n_jobs=-1)),
+                   #('LinSVC', LinearSVC(random_state=123)),
+                   #('KNN', KNeighborsClassifier(n_jobs=-1)),
+                   #('SGD', SGDClassifier(random_state=123,n_jobs=-1)),
+                   #('Gauss', GaussianNB()),
+                   #('svc', SVC(random_state=123)),
+                   #('RFC', RandomForestClassifier(random_state=123,n_jobs=-1)),
+                   #('ADABoost', AdaBoostClassifier()),
+                   #('GradBoost', GradientBoostingClassifier()),
+                   ('RFC', RandomForestClassifier(random_state=123,n_jobs=-1))]
     return classifiers
 
 get_classifiers()
 
 def get_encoders():
-    encoders = [('WOEEncoder', WOEEncoder()),
-                ('TargetEncoder', TargetEncoder()),
-                ('CatBoostEncoder', CatBoostEncoder())]
+    encoders = [#('TargetEncoder', TargetEncoder()),
+                #('CatBoostEncoder', CatBoostEncoder()),
+                ('WOEEncoder', WOEEncoder())]
     return encoders
 
 get_encoders()
@@ -249,17 +308,10 @@ def plot_clfs(df):
     axes[1].set_facecolor("aliceblue")
     plt.setp(axes[1].xaxis.get_majorticklabels(), rotation=45)
     axes[0].set_facecolor("aliceblue")
-    plt.tight_layout()
-    plt.show()
-
+    #plt.tight_layout()
     plt.show()
 
 def evaluate_models():
-    from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import MinMaxScaler
-    from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score
-
-    X_train,X_test,y_train, y_test = split_data(results_sample)
 
     enc_name = []
     clf_name = []
@@ -289,4 +341,150 @@ def evaluate_models():
 
 evaluate_models()
 
+print('after eval models',results_sample.shape)
 
+def rfc_rndm_srchCV():
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.model_selection import GridSearchCV
+    from sklearn.preprocessing import MinMaxScaler
+
+    WOE_encoder = WOEEncoder()
+    X_train_enc = WOE_encoder.fit_transform(X_train, y_train)
+    X_test_enc = WOE_encoder.transform(X_test)
+
+    scaler = MinMaxScaler()
+    X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
+    X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
+
+
+    CV_grid = {'n_estimators': [100,500,1000],
+               'max_features': ['auto'],
+               'max_depth': [100,150,200],
+               'min_samples_split': [8,10,12],
+               'min_samples_leaf': [1],
+               'bootstrap': [True],
+               'class_weight': [None, 'balanced']
+               }
+    RFC = RandomForestClassifier()
+    #RFC_CV = GridSearchCV(estimator=RFC, param_grid=CV_grid, cv=5, verbose=1)
+    RFC_RANDOM = RandomizedSearchCV(estimator=RFC, param_distributions=CV_grid, n_iter=35, cv=3, verbose=1,
+                                    random_state=42, n_jobs=-1, refit=True, scoring='accuracy')
+    RFC_RANDOM.fit(X_train_enc_scaled, y_train)
+
+    print(RFC_RANDOM.best_estimator_)
+    print(RFC_RANDOM.best_params_)
+    print(RFC_RANDOM.best_score_)
+
+#rfc_rndm_srchCV()
+
+def svc_rndm_srchCV():
+
+    CAT_encoder = CatBoostEncoder()
+    X_train_enc = CAT_encoder.fit_transform(X_train, y_train)
+    X_test_enc = CAT_encoder.transform(X_test)
+
+    scaler = MinMaxScaler()
+    X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
+    X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
+
+
+    CV_grid = {'C': [1,5,10,50],
+                  'gamma': [1,0.5,0.1],
+                  'kernel': ['rbf', 'poly']
+                  }
+    svc = SVC()
+    #svc_CV = GridSearchCV(estimator=svc, param_grid=CV_grid, cv=5, verbose=1)
+    svc_RANDOM = RandomizedSearchCV(estimator=svc, param_distributions=CV_grid, n_iter=20, cv=3, verbose=1,
+                                    random_state=42, n_jobs=-1, refit=True, scoring='accuracy')
+    svc_RANDOM.fit(X_train_enc_scaled, y_train)
+
+    print(svc_RANDOM.best_estimator_)
+    print(svc_RANDOM.best_params_)
+    print(svc_RANDOM.best_score_)
+
+#svc_rndm_srchCV()
+
+def gradboost_rndm_srchCV():
+
+    CAT_encoder = CatBoostEncoder()
+    X_train_enc = CAT_encoder.fit_transform(X_train, y_train)
+    X_test_enc = CAT_encoder.transform(X_test)
+
+    scaler = MinMaxScaler()
+    X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
+    X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
+
+    CV_grid = {
+        "n_estimators": [5, 50, 250, 500],
+        "max_depth": [1, 3, 5, 7, 9],
+        "learning_rate": [0.01, 0.1, 1, 10, 100]
+    }
+
+    GradBoost = GradientBoostingClassifier()
+    #GradBoost_CV = GridSearchCV(estimator=GradBoost, param_grid=CV_grid, cv=5, verbose=1)
+    GradBoost_RANDOM = RandomizedSearchCV(estimator=GradBoost, param_distributions=CV_grid, n_iter=75, cv=3, verbose=1,
+                                    random_state=42, n_jobs=-1, refit=True, scoring='accuracy')
+    GradBoost_RANDOM.fit(X_train_enc_scaled, y_train)
+
+    print(GradBoost_RANDOM.best_estimator_)
+    print(GradBoost_RANDOM.best_params_)
+    print(GradBoost_RANDOM.best_score_)
+
+#gradboost_rndm_srchCV()
+
+
+def rfc_CV_grid():
+
+    WOE_encoder = WOEEncoder()
+    X_train_enc = WOE_encoder.fit_transform(X_train, y_train)
+    X_test_enc = WOE_encoder.transform(X_test)
+
+    scaler = MinMaxScaler()
+    X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
+    X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
+
+    CV_grid = {'n_estimators': [500,1000],
+                'max_features': ['auto'],
+                'max_depth': [175, 200],
+                'min_samples_split': [9, 10, 11],
+                'min_samples_leaf': [1],
+                'bootstrap': [True]
+                }
+    RFC = RandomForestClassifier()
+    RFC_CV = GridSearchCV(estimator=RFC, param_grid=CV_grid, cv=2, verbose=1)
+    RFC_CV.fit(X_train_enc_scaled, y_train)
+
+    print(RFC_CV.best_estimator_)
+    print(RFC_CV.best_params_)
+    print(RFC_CV.best_score_)
+
+#rfc_CV_grid()
+def rfc_best_est():
+
+    print(results_sample.info())
+
+    WOE_encoder = WOEEncoder()
+    X_train_enc = WOE_encoder.fit_transform(X_train, y_train)
+    X_test_enc = WOE_encoder.transform(X_test)
+
+    scaler = MinMaxScaler()
+    X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
+    X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
+
+
+    RF_pipeline = Pipeline(steps=[('target_encoder', TargetEncoder()), ('scaler', MinMaxScaler()), ('RF_clf',
+                                                                                                    RandomForestClassifier(
+                                                                                                        n_estimators=2000,
+                                                                                                        min_samples_split=9,
+                                                                                                        min_samples_leaf=1,
+                                                                                                        max_features='auto',
+                                                                                                        max_depth=175,
+                                                                                                        bootstrap=True))])
+    RF_pipeline.fit(X_train, y_train)
+    RF_pred = RF_pipeline.predict(X_test)
+    print('RF Accuracy :', accuracy_score(y_test, RF_pred))
+    print('RF F1 :', f1_score(y_test, RF_pred))
+    print(confusion_matrix(y_test, RF_pred))
+    print(classification_report(y_test, RF_pred))
+
+#rfc_best_est()
