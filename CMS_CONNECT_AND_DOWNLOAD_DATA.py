@@ -9,20 +9,21 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.svm import SVC, LinearSVC, NuSVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier,GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier,GradientBoostingClassifier,StackingClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score,confusion_matrix
 from sklearn.model_selection import train_test_split,cross_validate,GridSearchCV,RandomizedSearchCV
 from sklearn.pipeline import Pipeline
+from time import time
 import re
-
 import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def set_display():
     '''
-        Sets Display Options.
+        Sets Display Options including warnings
         Parameters:
             N/A
         Returns:
@@ -32,6 +33,9 @@ def set_display():
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
     pd.set_option('display.max_colwidth', None)
+
+    #Suppress 'FutureWarning' messages
+    warnings.simplefilter(action='ignore', category=FutureWarning)
 
 set_display()
 
@@ -59,7 +63,6 @@ def api_connection(n):
                              'provider_spec_cd,'
                              'psps_submitted_service_cnt,'
                              'psps_denied_services_cnt,'
-                             'psps_hcpcs_asc_ind_cd,'
                              'hcpcs_betos_cd',
                      where = 'psps_submitted_charge_amt > 5',
                      limit = n)
@@ -94,10 +97,13 @@ def create_sample(df,n):
 
 results_sample = create_sample(results_df,0.2)
 
-results_sample['hcpcs_new'] = results_sample.hcpcs_cd.apply(lambda x: x[-1:] if re.match(r'\d{4}[a-zA-Z]{1}',x) else x[:2])
+def code_groups(df):
+    results_sample['hcpcs_groups'] = results_sample.hcpcs_cd.apply(lambda x: (x[-1:]+x[:1]) if re.match(r'\d{4}[a-zA-Z]{1}',x) else x[:2])
 
+    return results_sample
 
-#re.fullmatch(pattern, str)
+results_sample=code_groups(results_sample)
+
 
 def remove_nulls(df):
     '''
@@ -130,30 +136,36 @@ results_sample = change_data_types(results_sample)
 def pre_pend_cd(df):
     results_sample['carrier_num'] = 'cn_' + results_sample['carrier_num'].astype(str)
     results_sample['place_of_service_cd'] = 'pos_' + results_sample['place_of_service_cd'].astype(str)
+
     return results_sample
 
 results_sample = pre_pend_cd(results_sample)
 
 #add new columns
-def add_new_cols(df):
+def add_new_cols(df,n):
     #create calculated field
     results_sample['chg_per_svc'] = results_sample['psps_submitted_charge_amt'] / results_sample['psps_submitted_service_cnt']
 
-    #create bins for continuous features
+    #create bins to convert continuous features
     results_sample['sub_chg_amt_binn'] = pd.qcut(results_sample['psps_submitted_charge_amt'], q=60, labels=False,duplicates='drop')
-    results_sample['sub_svc_cnt_binn'] = pd.qcut(results_sample['psps_submitted_service_cnt'], q=60,labels=False, duplicates='drop')
+    results_sample['sub_svc_cnt_binn'] = pd.qcut(results_sample['psps_submitted_service_cnt'], q=60,labels=False,duplicates='drop')
     results_sample['chg_per_svc_binn'] = pd.qcut(results_sample['chg_per_svc'], q=60, labels=False,duplicates='drop')
 
-    #results_sample['sub_chg_amt_binn'] = 'sub_chg_' + results_sample['place_of_service_cd'].astype(str)
-    #results_sample['sub_svc_cnt_binn'] = 'svc_cnt_' + results_sample['place_of_service_cd'].astype(str)
-    #results_sample['chg_per_svc_binn'] = 'cps_' + results_sample['place_of_service_cd'].astype(str)
+    #print(results_sample['chg_per_svc_binn'].value_counts())
+
+    #results_sample['sub_chg_amt_binn'] = 'sub_' + results_sample['sub_chg_amt_binn'].astype(str)
+    #results_sample['sub_svc_cnt_binn'] = 'svc_' + results_sample['sub_svc_cnt_binn'].astype(str)
+    #results_sample['chg_per_svc_binn'] = 'cps_' + results_sample['chg_per_svc_binn'].astype(str)
+
 
     #create denied column and convert to int.  This will function as the traget/label feature
     results_sample['accepted'] = results_sample['psps_denied_services_cnt'] < 1
     results_sample['accepted'] = results_sample["accepted"].astype(int)
+
+
     return results_sample
 
-results_sample = add_new_cols(results_sample)
+results_sample = add_new_cols(results_sample,5)
 
 def creat_den_accpt(df):
     df_denied = df[results_sample['accepted'] ==1]
@@ -183,6 +195,7 @@ def cat_df(code,n):
     return cat_freq_counts_1
 
 def show_plts():
+
     hcpcs_cd = cat_df('hcpcs_cd', 25)
     carrier_num = cat_df('carrier_num', 25)
     pricing_locality_cd = cat_df('pricing_locality_cd', 25)
@@ -193,12 +206,12 @@ def show_plts():
     hcpcs_betos_cd = cat_df('hcpcs_betos_cd', 25)
     hcpcs_initial_modifier_cd = cat_df('hcpcs_initial_modifier_cd', 25)
     hcpcs_second_modifier_cd = cat_df('hcpcs_second_modifier_cd', 25)
-    cd_categories = cat_df('cd_categories', 25)
-    sub_chg_amt_binn = cat_df('sub_chg_amt_binn', 25)
-    sub_svc_cnt_binn = cat_df('sub_svc_cnt_binn', 25)
-    chg_per_svc_binn = cat_df('chg_per_svc_binn', 25)
+    cd_categories = cat_df('hcpcs_groups', 25)
+    #sub_chg_amt_binn = cat_df('sub_chg_amt_binn', 25)
+    #sub_svc_cnt_binn = cat_df('sub_svc_cnt_binn', 25)
+    #chg_per_svc_binn = cat_df('chg_per_svc_binn', 25)
 
-    fig, axes = plt.subplots(4, 4)
+    fig, axes = plt.subplots(3, 4)
 
     sns.lineplot(data = hcpcs_cd,x = 'hcpcs_cd',y = 'accepted',hue = 'class',ax = axes[0,0],legend=False)
     sns.lineplot(data = pricing_locality_cd,x = 'pricing_locality_cd',y = 'accepted',hue = 'class',ax = axes[0,1],legend = False)
@@ -209,19 +222,15 @@ def show_plts():
     sns.lineplot(data = hcpcs_betos_cd,x = 'hcpcs_betos_cd',y = 'accepted',hue = 'class',ax = axes[1,2],legend = False)
     sns.lineplot(data = hcpcs_initial_modifier_cd,x = 'hcpcs_initial_modifier_cd',y = 'accepted',hue = 'class',ax = axes[1,3],legend = False)
     sns.lineplot(data = hcpcs_second_modifier_cd,x = 'hcpcs_second_modifier_cd',y = 'accepted',hue = 'class',ax = axes[2,0],legend = False)
-    sns.lineplot(data = cd_categories,x = 'cd_categories',y = 'accepted',hue = 'class',ax = axes[2,1],legend = False)
-    sns.lineplot(data = sub_chg_amt_binn, x='sub_chg_amt_binn', y='accepted', hue='class', sort= True,ax=axes[2, 2], legend=False)
-    sns.lineplot(data = sub_svc_cnt_binn, x='sub_svc_cnt_binn', y='accepted', hue='class', sort= True,ax=axes[2, 3], legend=False)
-    sns.lineplot(data = chg_per_svc_binn, x='chg_per_svc_binn', y='accepted', hue='class',sort= True, ax=axes[3, 0], legend=False)
+    sns.lineplot(data = cd_categories,x = 'hcpcs_groups',y = 'accepted',hue = 'class',ax = axes[2,1],legend = False)
 
     kde_df_table = creat_kde_df(results_sample)
     palette = {'accepted': 'dodgerblue','denied': 'orangered'}
 
-    sns.kdeplot(data=kde_df_table, x="psps_submitted_charge_amt", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[3,1],legend=False,palette=palette)
-    sns.kdeplot(data=kde_df_table, x="psps_submitted_service_cnt", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[3,2], legend=False,palette=palette)
-    sns.kdeplot(data=kde_df_table, x="chg_per_svc", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[3,3], legend=False,palette=palette)
+    sns.kdeplot(data=kde_df_table, x="psps_submitted_charge_amt", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[2,2],legend=False,palette=palette)
+    sns.kdeplot(data=kde_df_table, x="psps_submitted_service_cnt", hue='accepted', log_scale=True, fill=True,bw_adjust=.75, ax=axes[2,3], legend=False,palette=palette)
 
-    for i in range (0,4):
+    for i in range (0,3):
         for j in range(0,4):
 
             axes[i,j].set_ylabel("value frequency")
@@ -231,9 +240,9 @@ def show_plts():
             axes[i,j].set_xticks([])
             axes[i,j].set_facecolor("aliceblue")
 
-    axes[3,3].set_ylabel("density")
-    axes[3,2].set_ylabel("density")
-    axes[3,1].set_ylabel("density")
+    axes[2,2].set_ylabel("density")
+    axes[2,3].set_ylabel("density")
+    #axes[3,1].set_ylabel("density")
     plt.suptitle("Accepted/Denied Frequencies",fontsize =16)
 
     fig.legend(title='', bbox_to_anchor=(0.1,0.875),  labels=['Accepted', 'Denied'])
@@ -251,27 +260,32 @@ y = create_target(results_sample)
 
 def del_cols(df):
     results_sample.drop([#'psps_submitted_charge_amt',
-                            #'psps_submitted_service_cnt',
-                            'chg_per_svc',
-                            'accepted',
-                            #'cd_categories',
-                            'sub_chg_amt_binn',
-                            'sub_svc_cnt_binn',
-                            'psps_denied_services_cnt'], inplace=True, axis=1)
+                        #'psps_submitted_service_cnt',
+                        'hcpcs_cd',
+                        'chg_per_svc',
+                        'accepted',
+                        #'hcpcs_groups',
+                        'cd_categories',
+                        'sub_chg_amt_binn',
+                        'sub_svc_cnt_binn',
+                        #'hcpcs_second_modifier_cd',
+                        'chg_per_svc_binn',
+                        'psps_denied_services_cnt'], inplace=True, axis=1)
     return results_sample
+
 
 results_sample = del_cols(results_sample)
 
 
-def split_data(df):
+def split_data(df,n):
     #y = create_target(results_sample)
     #del_cols()
 
-    X_train, X_test, y_train, y_test = train_test_split(results_sample, y, stratify=y,test_size=0.10, random_state=123)
+    X_train, X_test, y_train, y_test = train_test_split(results_sample, y, stratify=y,test_size=n, random_state=123)
 
     return  X_train,X_test,y_train, y_test
 
-X_train,X_test,y_train, y_test = split_data(results_sample)
+X_train,X_test,y_train, y_test = split_data(results_sample,.2)
 
 
 
@@ -308,7 +322,7 @@ def plot_clfs(df):
     axes[1].set_facecolor("aliceblue")
     plt.setp(axes[1].xaxis.get_majorticklabels(), rotation=45)
     axes[0].set_facecolor("aliceblue")
-    #plt.tight_layout()
+    plt.tight_layout()
     plt.show()
 
 def evaluate_models():
@@ -332,16 +346,19 @@ def evaluate_models():
             clf_name.append(classifier[0])
             acc_score.append(accuracy_score(y_test, pipe_pred))
             F1_score.append(f1_score(y_test, pipe_pred))
+            print('RF baselineAccuracy :', accuracy_score(y_test, pipe_pred))
+            print('RF baseline F1 :', f1_score(y_test, pipe_pred))
+            print(confusion_matrix(y_test, pipe_pred))
+            print(classification_report(y_test, pipe_pred))
 
     zippedList =  list(zip(enc_name, clf_name, acc_score,F1_score))
     eval_results = pd.DataFrame(zippedList,columns = ['encoder' , 'classifier', 'accuracy_score','F1_score'])
     eval_results_top = eval_results.iloc[eval_results.groupby(['classifier']).apply(lambda x: x['accuracy_score'].idxmax())]
-    plot_clfs(eval_results)
+    #plot_clfs(eval_results)
     print(eval_results_top.sort_values(by = 'accuracy_score',ascending=False))
 
-evaluate_models()
+#evaluate_models()
 
-print('after eval models',results_sample.shape)
 
 def rfc_rndm_srchCV():
     from sklearn.ensemble import RandomForestClassifier
@@ -357,10 +374,10 @@ def rfc_rndm_srchCV():
     X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
 
 
-    CV_grid = {'n_estimators': [100,500,1000],
+    CV_grid = {'n_estimators': [1000,2000],
                'max_features': ['auto'],
-               'max_depth': [100,150,200],
-               'min_samples_split': [8,10,12],
+               'max_depth': [175],
+               'min_samples_split': [9],
                'min_samples_leaf': [1],
                'bootstrap': [True],
                'class_weight': [None, 'balanced']
@@ -443,25 +460,38 @@ def rfc_CV_grid():
     X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
     X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
 
-    CV_grid = {'n_estimators': [500,1000],
+    CV_grid = {'n_estimators': [1000],
                 'max_features': ['auto'],
-                'max_depth': [175, 200],
-                'min_samples_split': [9, 10, 11],
+                'max_depth': [175],
+                'min_samples_split': [9],
                 'min_samples_leaf': [1],
-                'bootstrap': [True]
+                'bootstrap': [True],
+                'class_weight':['balanced']
                 }
+
+
     RFC = RandomForestClassifier()
-    RFC_CV = GridSearchCV(estimator=RFC, param_grid=CV_grid, cv=2, verbose=1)
-    RFC_CV.fit(X_train_enc_scaled, y_train)
+    RFC_CV = GridSearchCV(RFC, param_grid=CV_grid, cv=2)
+    RRC_CV = RFC_CV.fit(X_train_enc_scaled, y_train)
+
+    best_RFC_est = RRC_CV.best_estimator_
+    best_RFC_est.fit(X_train_enc_scaled, y_train)
+
+    RFC_pred = best_RFC_est.predict(X_test_enc_scaled)
+    print('CV RFC accuracy Score:  ',accuracy_score(y_test, RFC_pred))
+    print('CV RFC F1 Score:  ', f1_score(y_test, RFC_pred))
 
     print(RFC_CV.best_estimator_)
     print(RFC_CV.best_params_)
-    print(RFC_CV.best_score_)
+
+    print(confusion_matrix(y_test, RFC_pred))
+    print(classification_report(y_test, RFC_pred))
+
 
 #rfc_CV_grid()
 def rfc_best_est():
 
-    print(results_sample.info())
+    import time
 
     WOE_encoder = WOEEncoder()
     X_train_enc = WOE_encoder.fit_transform(X_train, y_train)
@@ -471,20 +501,67 @@ def rfc_best_est():
     X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
     X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
 
+    RF_pipeline = Pipeline(steps=[('target_encoder',TargetEncoder()),
+                                  ('scaler', MinMaxScaler()),
+                                  ('RF_clf', RandomForestClassifier(
+                                             n_estimators=100,
+                                             min_samples_split=9,
+                                             min_samples_leaf=1,
+                                             max_features='auto',
+                                             max_depth=175,
+                                             class_weight='balanced',
+                                             bootstrap=True,
+                                             random_state=123))])
 
-    RF_pipeline = Pipeline(steps=[('target_encoder', TargetEncoder()), ('scaler', MinMaxScaler()), ('RF_clf',
-                                                                                                    RandomForestClassifier(
-                                                                                                        n_estimators=2000,
-                                                                                                        min_samples_split=9,
-                                                                                                        min_samples_leaf=1,
-                                                                                                        max_features='auto',
-                                                                                                        max_depth=175,
-                                                                                                        bootstrap=True))])
-    RF_pipeline.fit(X_train, y_train)
-    RF_pred = RF_pipeline.predict(X_test)
+    start0 = time.time()
+    RF_pipeline.fit(X_train_enc_scaled, y_train)
+    stop0 = time.time()
+    print(f"Train time: {stop0 - start0}s")
+    print(X_train.info())
+    importance = RF_pipeline.steps[2][1].feature_importances_
+    for i, v in enumerate(importance):
+        print('Feature: %0d, Score: %.5f' % (i, v))
+    # plot feature importance
+    plt.bar([x for x in range(len(importance))], importance)
+    plt.show()
+
+    start1 = time.time()
+    RF_pred = RF_pipeline.predict(X_test_enc_scaled)
+    stop1 = time.time()
+    print(f"Predict time: {stop1 - start1}s")
     print('RF Accuracy :', accuracy_score(y_test, RF_pred))
     print('RF F1 :', f1_score(y_test, RF_pred))
     print(confusion_matrix(y_test, RF_pred))
     print(classification_report(y_test, RF_pred))
 
 #rfc_best_est()
+
+def stack_ensemble():
+
+    WOE_encoder = WOEEncoder()
+    X_train_enc = WOE_encoder.fit_transform(X_train, y_train)
+    X_test_enc = WOE_encoder.transform(X_test)
+
+    scaler = MinMaxScaler()
+    X_train_enc_scaled = pd.DataFrame(scaler.fit_transform(X_train_enc, y_train))
+    X_test_enc_scaled = pd.DataFrame(scaler.transform(X_test_enc))
+
+    clfs = list()
+    clfs.append(('lr', LogisticRegression()))
+    clfs.append(('knn', KNeighborsClassifier()))
+    clfs.append(('svm', SVC()))
+    clfs.append(('bayes', GaussianNB()))
+    # define meta learner model
+    meta_clf = LogisticRegression()
+    # define the stacking ensemble
+    stk_model = StackingClassifier(estimators=clfs, final_estimator = meta_clf, cv=5)
+    # fit the model on all available data
+    stk_model.fit(X_train_enc, y_train)
+
+    stk_pred = model.predict(X_test_enc_scaled)
+    print('Stack Accuracy :', accuracy_score(y_test, stk_pred))
+    print('stack F1 :', f1_score(y_test, stk_pred))
+    print(confusion_matrix(y_test, stk_pred))
+    print(classification_report(y_test, stk_pred))
+
+#stack_ensemble()
