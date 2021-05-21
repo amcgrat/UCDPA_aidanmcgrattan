@@ -97,7 +97,7 @@ y = results_df_sample['accepted']
 results_df_sample.drop(['psps_submitted_charge_amt',
                         'psps_submitted_service_cnt',
                         'chg_per_svc',
-                        'accepted',
+                        'denied',
                         #'cd_categories_y',
                         'psps_denied_services_cnt'], inplace=True,axis = 1)
 

@@ -18,6 +18,7 @@ from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.ensemble import GradientBoostingClassifier
+import re
 import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -32,13 +33,15 @@ def display_settings():
 display_settings()
 
 #import csv files.
-results_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_balanced.csv')
-independent_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_001.csv')
+results_df_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_SAMPLE_10.csv')
 hcpcs_cs_cat = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/HCPCS_CODES_ALL_1.csv')
 
 #join dataframe to code categories dataframe.
 results_df_sample=pd.merge(results_df_sample, hcpcs_cs_cat, on=['hcpcs_cd'], how='left')
+#results_df_sample.drop(['cd_categories_y'], inplace=True, axis=1)
 
+
+#results_df_sample.rename(columns = {'cd_categories_x':'cd_categories'}, inplace = True)
 
 #Replace nulls in denied services count with zero.
 results_df_sample['psps_denied_services_cnt'].replace(np.NaN,'0',inplace=True)
@@ -57,6 +60,9 @@ results_df_sample = results_df_sample.astype({'psps_denied_services_cnt': np.int
 
 
 #calculate charge per service and create new column
+
+results_df_sample['hcpcs_groups'] = results_df_sample.hcpcs_cd.apply(lambda x: (x[-1:]+x[:1]) if re.match(r'\d{4}[a-zA-Z]{1}',x) else x[:2])
+
 results_df_sample['chg_per_svc'] = results_df_sample['psps_submitted_charge_amt']/results_df_sample['psps_submitted_service_cnt']
 
 results_df_sample['sub_chg_amt_binn'] = pd.qcut(results_df_sample['psps_submitted_charge_amt'],q = 60,labels=False,duplicates='drop')
@@ -84,7 +90,7 @@ for col in ['hcpcs_cd',
     results_df_sample[col] = results_df_sample[col].astype('category')
 
 
-print(results_df_sample.info())
+
 
 y = results_df_sample['denied']
 
@@ -93,6 +99,7 @@ results_df_sample.drop(['psps_submitted_charge_amt',
                         'psps_submitted_service_cnt',
                         'chg_per_svc',
                         'denied',
+                        'cd_categories',
                         'psps_denied_services_cnt'], inplace=True,axis = 1)
 
 X_train, X_test, y_train, y_test = train_test_split(results_df_sample, y, stratify=y,test_size=0.20, random_state=123)
@@ -131,7 +138,9 @@ def evaluate_models():
                                        ('classifier', classifier[1])])
                 pipe.fit(X_train, y_train)
                 pipe_pred=pipe.predict(X_test)
-                #print(encoder[0],classifier[0],accuracy_score(y_test,pipe_pred),f1_score(y_test, pipe_pred))
+                print(encoder[0],classifier[0],accuracy_score(y_test,pipe_pred),f1_score(y_test, pipe_pred))
+                #print(confusion_matrix(y_test, pipe_pred))
+                #print(classification_report(y_test, pipe_pred))
                 enc_name.append(encoder[0])
                 clf_name.append(classifier[0])
                 acc_score.append(accuracy_score(y_test,pipe_pred))
