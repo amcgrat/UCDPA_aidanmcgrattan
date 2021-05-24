@@ -86,7 +86,7 @@ print(param_grid)
 KNN = KNeighborsClassifier()
 
 # search across n different combinations (n_iter=n), and use all available cores (n_jobs=-1), n folds (cv=n)
-KNN_RANDOM = RandomizedSearchCV(estimator = KNN, param_distributions = param_grid, n_iter = 100, cv = 2, verbose=2, random_state=42, n_jobs = -1,refit=True,scoring = 'accuracy')
+KNN_RANDOM = RandomizedSearchCV(KNN, param_distributions = param_grid, n_iter = 100, cv = 2, verbose=2, random_state=42, n_jobs = -1)
 
 KNN_RANDOM.fit(X_train_enc_scaled,y_train)
 
