@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33c8f514-6dcc-4047-85f1-3332aaec4cbe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" beforeDir="false" afterPath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,11 +76,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="455" column="12" lean-forward="true" selection-start-line="455" selection-start-column="12" selection-end-line="455" selection-end-column="12" />
+            <state relative-caret-position="10340">
+              <caret line="470" column="7" lean-forward="true" selection-start-line="470" selection-start-column="7" selection-end-line="470" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3406">
+              <caret line="156" column="44" selection-start-line="156" selection-start-column="44" selection-end-line="156" selection-end-column="44" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -168,6 +180,7 @@
     <setting file="file://$PROJECT_DIR$/SQL_JOIN_LESSON_6.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/graphs_2.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BINNING_TESTS.py" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/main.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ENSEMBLE_CLF.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ADA_BOOST.py" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -202,6 +215,7 @@
         <option value="$PROJECT_DIR$/BINNING_TESTS.py" />
         <option value="$PROJECT_DIR$/RANDOMCV_KNN.py" />
         <option value="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -216,7 +230,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -228,6 +241,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -631,7 +645,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621896758049</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Commit 1 25/05/2021">
+      <created>1621982261400</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1621982261400</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView">
@@ -647,12 +668,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10748156" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16122234" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19176598" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20260021" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30267754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -667,8 +688,6 @@
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test for Github 1" />
-    <MESSAGE value="Test for Github 2" />
     <MESSAGE value="Test for Github Project file 1" />
     <MESSAGE value="Test for Github Project file 2" />
     <MESSAGE value="Connection and filtering project." />
@@ -692,7 +711,9 @@
     <MESSAGE value="Commit 1 20/05/2021" />
     <MESSAGE value="Commit 1 21/05/2021" />
     <MESSAGE value="Commit 1 24/05/2021" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 1 24/05/2021" />
+    <MESSAGE value="Commit 1 25/05/2021" />
+    <MESSAGE value="Commit 2 25/05/2021" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 2 25/05/2021" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/Anaconda3/envs/UCD_DATA_ANALYSIS/Lib/site-packages/category_encoders/utils.py">
@@ -932,8 +953,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="455" column="12" lean-forward="true" selection-start-line="455" selection-start-column="12" selection-end-line="455" selection-end-column="12" />
+        <state relative-caret-position="10340">
+          <caret line="470" column="7" lean-forward="true" selection-start-line="470" selection-start-column="7" selection-end-line="470" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3406">
+          <caret line="156" column="44" selection-start-line="156" selection-start-column="44" selection-end-line="156" selection-end-column="44" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
