@@ -155,7 +155,7 @@ def merge_df():
     #pad dataframe column to avoid mismatching to .csv code values.
     results_sample['hcpcs_cd']=results_sample.hcpcs_cd.str.pad(5,side='left',fillchar='0')
     # Import cd codes csv file.  Modify path
-    hcpcs_cs_cat = pd.read_csv('C:/Users/username/Desktop/HPCPS/HCPCS_CODES_ALL_1.csv')
+    hcpcs_cs_cat = pd.read_csv('C:/Users/username/Desktop/HCPCS_CODES_ALL_1.csv')
     # join dataframe to hcpcs code categories
     results_df_sample = pd.merge(results_sample, hcpcs_cs_cat, on=['hcpcs_cd'], how='left')
     return results_df_sample
