@@ -111,7 +111,7 @@ def import_data_file():
         DataFrame: Pandas Dataframe with imported data from API
     '''
     #Modify path and filename as necessary
-    results_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/CMS_DME_CLM_1.csv')
+    results_sample = pd.read_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/CMS_DME_CLM_2.csv')
     return results_sample
 
 results_sample = import_data_file()
@@ -388,6 +388,7 @@ def del_cols(df):
     Returns:
         DataFrame
     '''
+    #Drops selected columns and the target column.
     results_sample.drop(['psps_submitted_charge_amt',
                          'psps_submitted_service_cnt',
                          'hcpcs_groups',
@@ -480,6 +481,8 @@ def evaluate_models():
     acc_score = []
     F1_score = []
 
+    print(X_train.info())
+
     encoders = get_encoders()
     classifiers = get_classifiers()
     for index, encoder in enumerate(encoders):
@@ -490,7 +493,7 @@ def evaluate_models():
 
             pipe.fit(X_train, y_train)
             pipe_pred = pipe.predict(X_test)
-            #print(encoder[0],classifier[0],accuracy_score(y_test,pipe_pred),f1_score(y_test, pipe_pred))
+            print(encoder[0],classifier[0],accuracy_score(y_test,pipe_pred),f1_score(y_test, pipe_pred))
             enc_name.append(encoder[0])
             clf_name.append(classifier[0])
             acc_score.append(accuracy_score(y_test, pipe_pred))
@@ -500,12 +503,12 @@ def evaluate_models():
     eval_results = pd.DataFrame(zippedList,columns = ['encoder' , 'classifier', 'accuracy_score','F1_score'])
     #print(eval_results)
     eval_results_top = eval_results.iloc[eval_results.groupby(['classifier']).apply(lambda x: x['accuracy_score'].idxmax())]
-    #eval_results_top.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/GRAPHS_OUPUTS_FINAL/TOP_CLF_LIST.csv', index=False)
+    #eval_results_top.to_csv('C:/Users/amcgrat/Desktop/UCD PROGRAM/Project/HPCPS/GRAPHS_OUPUTS_FINAL/TOP_CLF_LIST_1.csv', index=False)
     plot_clfs(eval_results)
     eval_results_sorted = eval_results_top.sort_values(by = 'accuracy_score',ascending=False)
     print(eval_results_sorted)
 
-evaluate_models()
+#evaluate_models()
 
 def rfc_CV_grid():
     '''
@@ -598,7 +601,7 @@ def knn_CV_grid():
 
 #knn_CV_grid()
 
-def rfc_best_est():
+def rfc_best_model():
     '''
     Create best model for RandomForestClassifier
     Parameters:
@@ -634,8 +637,11 @@ def rfc_best_est():
                                    #random_state=123
                                   )
 
-
+    time1 = time()
     model.fit(X_train_enc_scaled, y_train)
+    time2 = time()
+    time_taken = (time2-time1)
+    print('train_time',time_taken)
     model_predict = model.predict(X_test_enc_scaled)
     print('RFC Accuracy :', accuracy_score(y_test, model_predict))
     print('RFC F1 :', f1_score(y_test, model_predict))
@@ -678,7 +684,7 @@ def rfc_best_est():
     plt.title('RandomForest Confusion Matrix')
     plt.show()
 
-rfc_best_est()
+rfc_best_model()
 
 def stack_ensemble():
     '''

@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33c8f514-6dcc-4047-85f1-3332aaec4cbe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" beforeDir="false" afterPath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10340">
-              <caret line="470" column="7" lean-forward="true" selection-start-line="470" selection-start-column="7" selection-end-line="470" selection-end-column="7" />
+            <state relative-caret-position="131">
+              <caret line="110" column="63" lean-forward="true" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -91,8 +91,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3406">
-              <caret line="156" column="44" selection-start-line="156" selection-start-column="44" selection-end-line="156" selection-end-column="44" />
+            <state relative-caret-position="248">
+              <caret line="423" column="12" lean-forward="true" selection-start-line="423" selection-start-column="12" selection-end-line="423" selection-end-column="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -219,9 +219,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="316" />
-    <option name="width" value="1549" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="37" />
+    <option name="y" value="28" />
+    <option name="width" value="1854" />
     <option name="height" value="1023" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -266,7 +267,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.CMS_CONNECT_AND_DOWNLOAD_DATA">
+  <component name="RunManager" selected="Python.main">
     <configuration name="BINNING_TESTS" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -351,27 +352,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="graphs" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="UCD_DATA_ANALYSIS" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphs.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="graphs_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -385,6 +365,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphs_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="UCD_DATA_ANALYSIS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -416,11 +417,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.CMS_CONNECT_AND_DOWNLOAD_DATA" />
         <item itemvalue="Python.BINNING_TESTS" />
         <item itemvalue="Python.graphs_2" />
         <item itemvalue="Python.single_clf" />
-        <item itemvalue="Python.graphs" />
       </list>
     </recent_temporary>
   </component>
@@ -652,7 +653,21 @@
       <option name="project" value="LOCAL" />
       <updated>1621982261400</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Commit main.py 2 26/05/2021">
+      <created>1622017863873</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1622017863873</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Commit main.py 2 26/05/2021">
+      <created>1622027141973</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1622027141973</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -665,15 +680,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="64" y="59" width="1854" height="1023" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16122234" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1685022" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20260021" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22808988" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30267754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -688,7 +702,6 @@
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test for Github Project file 1" />
     <MESSAGE value="Test for Github Project file 2" />
     <MESSAGE value="Connection and filtering project." />
     <MESSAGE value="Connection and filtering for project 3/6/21." />
@@ -713,7 +726,8 @@
     <MESSAGE value="Commit 1 24/05/2021" />
     <MESSAGE value="Commit 1 25/05/2021" />
     <MESSAGE value="Commit 2 25/05/2021" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 2 25/05/2021" />
+    <MESSAGE value="Commit main.py 2 26/05/2021" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit main.py 2 26/05/2021" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/Anaconda3/envs/UCD_DATA_ANALYSIS/Lib/site-packages/category_encoders/utils.py">
@@ -953,8 +967,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10340">
-          <caret line="470" column="7" lean-forward="true" selection-start-line="470" selection-start-column="7" selection-end-line="470" selection-end-column="7" />
+        <state relative-caret-position="131">
+          <caret line="110" column="63" lean-forward="true" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -963,8 +977,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3406">
-          <caret line="156" column="44" selection-start-line="156" selection-start-column="44" selection-end-line="156" selection-end-column="44" />
+        <state relative-caret-position="248">
+          <caret line="423" column="12" lean-forward="true" selection-start-line="423" selection-start-column="12" selection-end-line="423" selection-end-column="12" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
