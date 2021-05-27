@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33c8f514-6dcc-4047-85f1-3332aaec4cbe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/1612_connect.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" beforeDir="false" afterPath="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,8 +79,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="110" column="63" lean-forward="true" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
+            <state relative-caret-position="71">
+              <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-end-line="21" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="423" column="12" selection-start-line="423" selection-start-column="12" selection-end-line="423" selection-end-column="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -89,12 +101,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
+        <entry file="file://$PROJECT_DIR$/1612_connect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="423" column="12" lean-forward="true" selection-start-line="423" selection-start-column="12" selection-end-line="423" selection-end-column="12" />
+            <state relative-caret-position="543">
+              <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -181,6 +193,7 @@
     <setting file="file://$PROJECT_DIR$/graphs_2.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BINNING_TESTS.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/1612_connect.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ENSEMBLE_CLF.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ADA_BOOST.py" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -216,13 +229,15 @@
         <option value="$PROJECT_DIR$/RANDOMCV_KNN.py" />
         <option value="$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/1612_connect.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="29" />
-    <option name="width" value="1854" />
-    <option name="height" value="1023" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-48" />
+    <option name="y" value="26" />
+    <option name="width" value="1564" />
+    <option name="height" value="1043" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -266,7 +281,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.1612_connect">
+    <configuration name="1612_connect" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="UCD_DATA_ANALYSIS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/1612_connect.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="BINNING_TESTS" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UCD_DATA_ANALYSIS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -393,34 +429,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="single_clf" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="UCD_DATA_ANALYSIS" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/single_clf.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.1612_connect" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.CMS_CONNECT_AND_DOWNLOAD_DATA" />
         <item itemvalue="Python.BINNING_TESTS" />
         <item itemvalue="Python.graphs_2" />
-        <item itemvalue="Python.single_clf" />
       </list>
     </recent_temporary>
   </component>
@@ -666,7 +681,21 @@
       <option name="project" value="LOCAL" />
       <updated>1622027141973</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Commit main.py 3 26/05/2021">
+      <created>1622037019149</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1622037019149</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Commit main.py 3 26/05/2021">
+      <created>1622037095271</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1622037095271</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -679,29 +708,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="59" width="1854" height="1023" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1685022" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.119072706" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.22808988" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25027084" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30267754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.2426869" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.24157304" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.24160346" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.24157304" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test for Github Project file 2" />
     <MESSAGE value="Connection and filtering project." />
     <MESSAGE value="Connection and filtering for project 3/6/21." />
     <MESSAGE value="Soda filtering for project 3/6/21." />
@@ -726,7 +755,8 @@
     <MESSAGE value="Commit 1 25/05/2021" />
     <MESSAGE value="Commit 2 25/05/2021" />
     <MESSAGE value="Commit main.py 2 26/05/2021" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit main.py 2 26/05/2021" />
+    <MESSAGE value="Commit main.py 3 26/05/2021" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit main.py 3 26/05/2021" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/Anaconda3/envs/UCD_DATA_ANALYSIS/Lib/site-packages/category_encoders/utils.py">
@@ -964,22 +994,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="110" column="63" lean-forward="true" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
+        <state relative-caret-position="248">
+          <caret line="423" column="12" selection-start-line="423" selection-start-column="12" selection-end-line="423" selection-end-column="12" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/CMS_CONNECT_AND_DOWNLOAD_DATA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="423" column="12" lean-forward="true" selection-start-line="423" selection-start-column="12" selection-end-line="423" selection-end-column="12" />
+        <state relative-caret-position="71">
+          <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-end-line="21" selection-end-column="15" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1612_connect.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
