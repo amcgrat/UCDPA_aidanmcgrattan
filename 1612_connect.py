@@ -35,5 +35,21 @@ def run_sql(conn):
     return df
 
 df = run_sql(conn)
-print(df.head())
+
+cross_tb = pd.crosstab(df.TaxID, df.ProvStatus)
+
+cross_tb['tin'] = cross_tb.index
+cross_tb.reset_index(drop=True, inplace=True)
+cross_tb.rename(columns = {'N':'non_par'}, inplace = True)
+cross_tb.rename(columns = {'P':'par'}, inplace = True)
+
+non_par_only = cross_tb[(cross_tb['par']==0) & (cross_tb['non_par']==1)]
+par_only = cross_tb[(cross_tb['par']==1) & (cross_tb['non_par']==0)]
+all_par = cross_tb[(cross_tb['par']==1)]
+
+print(non_par_only.head(25))
+print(par_only.head(25))
+print(all_par.head(25))
+
+
 
